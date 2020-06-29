@@ -21,6 +21,7 @@ build/
 *.ipr
 out/
 
-
 ### Macos ##
 .DS_Store
+/.gradle/
+/.idea/
