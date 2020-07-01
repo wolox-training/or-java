@@ -5,6 +5,7 @@ import wolox.training.models.Book;
 import wolox.training.repositories.BookRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BookService {
 
@@ -17,6 +18,23 @@ public class BookService {
 
     public List<Book> findByTitle(String title) {
         return bookRepository.findByTitle(title);
+    }
+
+    public Iterable<Book> findAll() {
+        return bookRepository.findAll();
+    }
+
+    public Optional<Book> findById(Long id) {
+        return bookRepository.findById(id);
+    }
+
+    public Book save(Book book) {
+        return bookRepository.save(book);
+    }
+
+
+    public Book deleteById(Long id) {
+        return bookRepository.deleteById(id);
     }
 
     ;

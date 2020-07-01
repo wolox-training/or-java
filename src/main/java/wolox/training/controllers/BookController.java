@@ -27,13 +27,11 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    private BookRepository bookRepository;
-    @Autowired
     private BookService bookService;
 
     @GetMapping
     public Iterable findAll() {
-        return bookRepository.findAll();
+        return bookService.findAll();
     }
 
     @GetMapping("/title/{bookTitle}")
@@ -48,20 +46,20 @@ public class BookController {
 
     @GetMapping("/{id}")
     public final Book findOne(@PathVariable Long id) {
-        return bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
+        return bookService.findById(id).orElseThrow(BookNotFoundException::new);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Book create(@RequestBody Book book) {
-        return bookRepository.save(book);
+        return bookService.save(book);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        bookRepository.findById(id)
+        bookService.findById(id)
                 .orElseThrow(BookNotFoundException::new);
-        bookRepository.deleteById(id);
+        bookService.deleteById(id);
 
 
     }
@@ -71,8 +69,8 @@ public class BookController {
         if (book.getId() != id) {
             throw new BookIdMismatchException();
         }
-        bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
-        return bookRepository.save(book);
+        bookService.findById(id).orElseThrow(BookNotFoundException::new);
+        return bookService.save(book);
     }
 
     public String book(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {

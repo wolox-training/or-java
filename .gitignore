@@ -23,5 +23,3 @@ out/
 
 ### Macos ##
 .DS_Store
-/.gradle/
-/.idea/
