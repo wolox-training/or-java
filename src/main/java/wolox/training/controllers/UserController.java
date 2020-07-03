@@ -24,8 +24,6 @@ import java.security.Principal;
 public class UserController {
 
     @Autowired
-    private BookService bookRepository;
-    @Autowired
     private UserService userService;
     @Autowired
     private BookService bookService;
@@ -74,17 +72,11 @@ public class UserController {
 
     @PostMapping("/{user_id}/books/{book_id}")
     public User addBookToUser(@PathVariable Long user_id, @PathVariable Long book_id) {
-        User user = userService.findById(user_id);
-        Book book = bookRepository.findById(book_id);
-        user.addBook(book);
-        return userService.save(user);
+        return userService.addBookToUser(user_id, book_id);
     }
 
     @DeleteMapping("/{user_id}/books/{book_id}")
     public User deleteBookToUser(@PathVariable Long user_id, @PathVariable Long book_id) {
-        User user = userService.findById(user_id);
-        Book book = bookService.findById(book_id);
-        user.deleteBook(book);
-        return userService.save(user);
+        return userService.deleteBookToUser(user_id, book_id);
     }
 }
