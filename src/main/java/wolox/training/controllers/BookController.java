@@ -32,7 +32,7 @@ public class BookController {
     }
 
     @GetMapping("/title/{bookTitle}")
-    public List<Book> findByTitle(@PathVariable String bookTitle) {
+    public final List<Book> findByTitle(@PathVariable String bookTitle) {
             return bookService.findByTitle(bookTitle);
     }
 
@@ -43,7 +43,7 @@ public class BookController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Book create(@RequestBody Book book) {
+    public final Book create(@RequestBody Book book) {
         return bookService.save(book);
     }
 
@@ -53,7 +53,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public Book updateBook(@RequestBody Book book, @PathVariable Long id) {
+    public final Book updateBook(@RequestBody Book book, @PathVariable Long id) {
         if (book.getId() != id) {
             throw new BookIdMismatchException();
         }
